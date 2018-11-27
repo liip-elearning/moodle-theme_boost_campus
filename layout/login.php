@@ -33,9 +33,10 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes
 ];
 
-echo $OUTPUT->render_from_template('theme_boost/login', $templatecontext);
+// MODIFICATION START: Handle additional layout elements.
+// This is needed to get the additional files template context without adding them to this file directly.
+ob_start();
 
-// MOFIFICATION START.
 // Include own layout file for the footnote region.
 // The theme_boost/login template already renders the standard footer.
 // The footer blocks and the image area are currently not shown on the login page.
@@ -46,4 +47,17 @@ if (!empty($footnote)) {
     // Add footnote layout file.
     require_once(__DIR__ . '/includes/footnote.php');
 }
+
+// Get output buffer.
+$additionallayouts = ob_get_clean();
+
+// Check if there's something in the buffer.
+if ($additionallayouts == false) {
+    $additionallayouts = '';
+}
+// Add the template context.
+$templatecontext['additionallayouts'] = $additionallayouts;
+
+// Render own template.
+echo $OUTPUT->render_from_template('theme_boost_campus/login', $templatecontext);
 // MODIFICATION END.

@@ -4,6 +4,14 @@ moodle-theme_boost_campus
 Changes
 -------
 
+### Release v3.4-r6
+
+ * 2018-11-28 - Fixed broken login functionality caused by Moodle security patch (see MDL-63183). 
+                This fix was backported to 3.4 with disregard of our own Moodle release support policy 
+                (see https://github.com/moodleuulm/moodle-theme_boost_campus/blob/master/README.md#moodle-release-support) 
+                as it fixes a fatal problem. There is no corresponding commit for this fix in the plugin's Git repository. 
+                Thanks for your understanding.
+
 ### Release v3.4-r5
 
 * 2018-05-17 - Add missing PHPDoc to make codechecker happier.
